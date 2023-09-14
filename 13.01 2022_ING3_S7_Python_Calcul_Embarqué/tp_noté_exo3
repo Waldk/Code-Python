@@ -1,0 +1,36 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import math 
+
+def euler_y(x,y):
+    return -4*y    #ici l equa differentielle etudiée c est la fameuse formule de f !
+
+
+def euler_resolution(h,y,x): # methode de Euler de resolution
+    return y+h*euler_y(x,y)
+
+h=0.1
+y0=float(input('y initial : ')) #prendre y0 comme valeur init de y pour cette equa diff ou modif solution exacte
+
+nb_points=400
+
+
+t=np.linspace(0,nb_points,nb_points)
+y=np.linspace(0,0,nb_points)   #solution approchée par Euler
+solution=np.linspace(0,0,nb_points) #solution exacte
+x=np.linspace(0,nb_points*h,nb_points)
+
+
+y[0]=y0
+
+
+solution[0]=y0;
+for i in range(1,nb_points):
+    y[i]=euler_resolution(h,y[i-1],x[i])
+    #solution[i]=
+
+#plt.plot(t,y)
+plt.plot(t,y,solution)
+plt.show() 
+
+
